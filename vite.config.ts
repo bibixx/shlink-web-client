@@ -28,6 +28,14 @@ export default defineConfig({
   },
   base: !homepage ? undefined : homepage, // Not using just homepage because empty string should be discarded
 
+  resolve: {
+    alias: {
+      '@shlinkio/shlink-frontend-kit': resolve('src/vendor/shlink-frontend-kit'),
+      '@shlinkio/shlink-web-component': resolve('src/vendor/shlink-web-component'),
+      '@shlinkio/data-manipulation': resolve('src/vendor/data-manipulation'),
+    },
+  },
+
   // Vitest config
   test: {
     globals: true,

@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import { fromPartial } from '@total-typescript/shoehorn';
 import { MemoryRouter } from 'react-router';
-import { Home } from '../../src/common/Home';
+import { OriginalHome } from '../../src/common/Home';
 import type { ServersMap, ServerWithId } from '../../src/servers/data';
 import { checkAccessibility } from '../__helpers__/accessibility';
 
-describe('<Home />', () => {
+describe('<OriginalHome />', () => {
   const setUp = (servers: ServersMap = {}) => render(
     <MemoryRouter>
-      <Home servers={servers} />
+      <OriginalHome servers={servers} />
     </MemoryRouter>,
   );
 

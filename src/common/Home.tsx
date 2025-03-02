@@ -14,7 +14,18 @@ interface HomeProps {
   servers: ServersMap;
 }
 
-export const Home = ({ servers }: HomeProps) => {
+export const Home = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate('/server/mobile-warsaw-www.mobilewarsaw.pl/overview');
+  }, [navigate]);
+
+  // Return null since we're redirecting immediately
+  return null;
+};
+
+export const OriginalHome = ({ servers }: HomeProps) => {
   const navigate = useNavigate();
   const serversList = Object.values(servers);
   const hasServers = serversList.length > 0;

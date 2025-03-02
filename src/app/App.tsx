@@ -23,6 +23,7 @@ type AppProps = {
 type AppDeps = {
   MainHeader: FC;
   Home: FC;
+  OriginalHome: FC;
   ShlinkWebComponentContainer: FC;
   CreateServer: FC;
   EditServer: FC;
@@ -37,6 +38,7 @@ const App: FCWithDeps<AppProps, AppDeps> = (
   const {
     MainHeader,
     Home,
+    OriginalHome,
     ShlinkWebComponentContainer,
     CreateServer,
     EditServer,
@@ -47,7 +49,7 @@ const App: FCWithDeps<AppProps, AppDeps> = (
 
   const location = useLocation();
   const initialServers = useRef(servers);
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === '/home/';
 
   useEffect(() => {
     // Try to fetch the remote servers if the list is empty during first render.
@@ -69,6 +71,7 @@ const App: FCWithDeps<AppProps, AppDeps> = (
         <div className={clsx('shlink-wrapper', { 'd-flex align-items-center pt-3': isHome })}>
           <Routes>
             <Route index element={<Home />} />
+            <Route path="/home" element={<OriginalHome />} />
             <Route path="/settings">
               {['', '*'].map((path) => <Route key={path} path={path} element={<Settings />} />)}
             </Route>
@@ -95,6 +98,7 @@ const App: FCWithDeps<AppProps, AppDeps> = (
 export const AppFactory = componentFactory(App, [
   'MainHeader',
   'Home',
+  'OriginalHome',
   'ShlinkWebComponentContainer',
   'CreateServer',
   'EditServer',

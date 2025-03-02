@@ -1,0 +1,10 @@
+@use '@shlinkio/shlink-frontend-kit/base';
+@use './tags/react-tag-autocomplete';
+@use './utils/StickyCardPaginator.scss';
+@use 'leaflet/dist/leaflet.css';
+
+.top-sticky {
+  position: sticky;
+  top: base.$headerHeight;
+  z-index: 10;
+}

@@ -4,7 +4,7 @@ import type Bottle from 'bottlejs';
 import type { ConnectDecorator } from '../../container/types';
 import { withoutSelectedServer } from '../../servers/helpers/withoutSelectedServer';
 import { ErrorHandler } from '../ErrorHandler';
-import { Home } from '../Home';
+import { Home, OriginalHome } from '../Home';
 import { MainHeaderFactory } from '../MainHeader';
 import { ScrollToTop } from '../ScrollToTop';
 import { ShlinkVersionsContainer } from '../ShlinkVersionsContainer';
@@ -23,8 +23,10 @@ export const provideServices = (bottle: Bottle, connect: ConnectDecorator) => {
   bottle.factory('MainHeader', MainHeaderFactory);
 
   bottle.serviceFactory('Home', () => Home);
-  bottle.decorator('Home', withoutSelectedServer);
-  bottle.decorator('Home', connect(['servers'], ['resetSelectedServer']));
+
+  bottle.serviceFactory('OriginalHome', () => OriginalHome);
+  bottle.decorator('OriginalHome', withoutSelectedServer);
+  bottle.decorator('OriginalHome', connect(['servers'], ['resetSelectedServer']));
 
   bottle.serviceFactory('ShlinkWebComponent', () => ShlinkWebComponent);
   bottle.factory('ShlinkWebComponentContainer', ShlinkWebComponentContainerFactory);
